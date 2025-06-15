@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34330.188
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PostrWpf", "PostrWpf\PostrWpf.csproj", "{646FF9B0-E953-468D-8312-3B9B7707511C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{646FF9B0-E953-468D-8312-3B9B7707511C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{646FF9B0-E953-468D-8312-3B9B7707511C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{646FF9B0-E953-468D-8312-3B9B7707511C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{646FF9B0-E953-468D-8312-3B9B7707511C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1BCF0A78-A008-47BE-92E9-A838FC1E90DC}
+	EndGlobalSection
+EndGlobal
