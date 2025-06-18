@@ -15,8 +15,8 @@ namespace PostrWpf
         private List<Point> userPoints = new List<Point>();
 
         private Point? currentPoint = null;
-        private int minres = 50;
-        private int maxres = 400;
+        private int minres = 0;
+        private int maxres = 350;
         private int midres => (minres + maxres) / 2;
         private bool checkMode = true;
         private int[] xpoints = { 4, 0, 2, 2, 1, -1, -2, -2, -4, -2, -2, -1, 3, 4, 5, 4 };
@@ -28,6 +28,7 @@ namespace PostrWpf
             InitializeComponent();
             InitializePredefinedPoints();
             SetupErrorTimer();
+            RotationInfo.Text = $"Постройте изображение по точкам.";
             CoordinatesLabel.Content = $"Следующая точка: X = {xpoints[0]}, Y = {ypoints[0]}";
             Loaded += (s, e) =>
             {
@@ -234,7 +235,10 @@ namespace PostrWpf
             checkMode = false;
             ResetCanvas();
         }
-
+        private void RestartButton_Click (object sender, RoutedEventArgs e)
+        {
+            ResetCanvas();
+        }
         private void ExitButton_Click(object sender, RoutedEventArgs e)
         {
             Close();

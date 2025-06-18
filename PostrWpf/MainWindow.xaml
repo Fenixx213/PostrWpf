@@ -2,21 +2,106 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         Title="Соединение точек" Height="650" Width="900">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="Auto"/>
-        </Grid.RowDefinitions>
-        <Label x:Name="CoordinatesLabel" Content="Следующая точка: X = 4, Y = -1" Margin="130,54,503,466" Grid.Row="1" FontSize="14" RenderTransformOrigin="0.603,2.689"/>
-        <StackPanel Orientation="Horizontal" Margin="10,0,0,0" Grid.Row="0" VerticalAlignment="Top">
+    <Grid Margin="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="4*" />
+            <ColumnDefinition Width="3*" />
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Column="0" Margin="20,0,10,0">
+            <Label x:Name="CoordinatesLabel" Content="Следующая точка: X = 4, Y = -1"   FontSize="14" RenderTransformOrigin="0.603,2.689" Width="232" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+            <Viewbox VerticalAlignment="Top" Stretch="Uniform" Margin="10">
+                <Border Background="WhiteSmoke" Padding="2.5" CornerRadius="4" BorderBrush="#ccc" BorderThickness="1">
+                    <Canvas x:Name="DrawingCanvas"  Background="Transparent" MouseDown="Canvas_MouseDown" MouseMove="Canvas_MouseMove" Width="350" Height="350" HorizontalAlignment="Left" VerticalAlignment="Top"/>
+                </Border>
+            </Viewbox>
+            <StackPanel Orientation="Horizontal" Margin="10,0,0,0"  VerticalAlignment="Top">
             <RadioButton x:Name="RadioButton1" Content="Проверка во время выполнения" IsChecked="True" Margin="0,0,20,0" Checked="RadioButton1_Checked"/>
             <RadioButton x:Name="RadioButton2" Content="Проверка в конце" Checked="RadioButton2_Checked"/>
         </StackPanel>
-        <Label x:Name="ErrorLabel" Grid.Row="1" Foreground="Red" Margin="14,34,51,0" VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Height="40">
-        </Label>
-        <Canvas x:Name="DrawingCanvas" Grid.Row="1" Background="Transparent" MouseDown="Canvas_MouseDown" MouseMove="Canvas_MouseMove" Width="350" Height="350" Margin="10,50,0,0" HorizontalAlignment="Left" VerticalAlignment="Top"/>
-        <Button x:Name="ExitButton" Content="Выход" Width="100" Height="40" Grid.Row="2" HorizontalAlignment="Right" Margin="0,0,10,10" Click="ExitButton_Click"/>
-        <Label Content="Постройте изображение по точкам" Margin="102,0,503,515" Grid.Row="1" FontSize="16" RenderTransformOrigin="0.603,2.689"/>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Margin="20,0,10,0">
+            <TextBlock Text="Карта" FontSize="36" FontWeight="Bold" TextWrapping="Wrap" Foreground="#1f3c88"/>
+            <Border Background="White" Padding="10" CornerRadius="10" BorderBrush="#ccc" BorderThickness="1">
+                <TextBlock x:Name="RotationInfo" FontSize="20" Foreground="Black" TextAlignment="Center" TextWrapping="Wrap"/>
+            </Border>
+            <Label x:Name="ErrorLabel" Grid.Row="1" Foreground="Crimson"  VerticalAlignment="Top" RenderTransformOrigin="0.5,0.5" Height="40"/>
+            <Grid Margin="0,10,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0"
+        Content="🔄 Заново"
+Margin="5"
+Background="MediumBlue"
+Foreground="White"
+FontWeight="SemiBold"
+BorderThickness="0"
+Cursor="Hand"
+Click="RestartButton_Click">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border x:Name="border"
+            Background="{TemplateBinding Background}"
+            CornerRadius="2"
+            BorderBrush="{TemplateBinding BorderBrush}"
+            BorderThickness="{TemplateBinding BorderThickness}">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="border" Property="Background" Value="RoyalBlue"/>
+                                </Trigger>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter TargetName="border" Property="Background" Value="Navy"/>
+                                </Trigger>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter TargetName="border" Property="Opacity" Value="0.5"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+                <Button Grid.Column="1"
+        Content="❌ Выход"
+        Margin="5"
+        Background="DarkRed"
+        Foreground="White"
+        FontWeight="SemiBold"
+        BorderThickness="0"
+        Cursor="Hand"
+        HorizontalAlignment="Stretch"
+        VerticalAlignment="Stretch"
+        Click="ExitButton_Click">
+                    <Button.Template>
+                        <ControlTemplate TargetType="Button">
+                            <Border x:Name="border"
+Background="{TemplateBinding Background}"
+CornerRadius="2"
+BorderBrush="{TemplateBinding BorderBrush}"
+BorderThickness="{TemplateBinding BorderThickness}">
+                                <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="IsMouseOver" Value="True">
+                                    <Setter TargetName="border" Property="Background" Value="PaleVioletRed"/>
+                                </Trigger>
+                                <Trigger Property="IsPressed" Value="True">
+                                    <Setter TargetName="border" Property="Background" Value="Red"/>
+                                </Trigger>
+                                <Trigger Property="IsEnabled" Value="False">
+                                    <Setter TargetName="border" Property="Opacity" Value="0.5"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Button.Template>
+                </Button>
+            </Grid>
+        </StackPanel>
     </Grid>
 </Window>
